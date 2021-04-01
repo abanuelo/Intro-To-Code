@@ -1,0 +1,136 @@
+import random
+from graphics import *
+
+question = "q"
+eightBallResponses = ['Better luck next time!', 'Hope you have a good day.']
+
+def draw_eight_ball():
+  win = GraphWin('Eight Ball', 700, 500, autoflush=False)
+  c_large = Circle(Point(350, 250), 200)
+  r_large = 0#drange(256)
+  b_large = 0#random.randrange(256)
+  g_large = 0#random.randrange(256)
+  color_large = color_rgb(r_large, g_large, b_large)
+  c_large.setFill(color_large)
+  c_large.draw(win)
+  update()
+  c_small = Circle(Point(350, 250), 120)
+  r_small = 255#random.randrange(256)
+  b_small = 255#random.randrange(256)
+  g_small = 255#random.randrange(256)
+  color_small = color_rgb(r_small, g_small, b_small)
+  c_small.setFill(color_small)
+  c_small.draw(win)
+  update()
+
+def shake_eight_ball():
+  win = GraphWin('Eight Ball', 700, 500, autoflush=False)
+  c_large = Circle(Point(350, 250), 200)
+  r_large = 0 #random.randrange(256)
+  b_large = 0 #random.randrange(256)
+  g_large = 0 #random.randrange(256)
+  color_large = color_rgb(r_large, g_large, b_large)
+  c_large = Circle(Point(350, 250), 200)
+  c_large.setFill(color_large)
+  c_large.draw(win)
+  update()
+  shake = 25
+  for i in range(5):
+    c_small = Circle(Point(350, 250), 120)
+    r_small = 0 #random.randrange(256)
+    b_small = 0 #random.randrange(256)
+    g_small = 0 #random.randrange(256)
+    color_small = color_rgb(r_small, g_small, b_small)
+    c_small = Circle(Point((350 + shake), 250), 120)
+    r_small = 255#random.randrange(256)
+    b_small = 255#random.randrange(256)
+    g_small = 255#random.randrange(256)
+    color_small = color_rgb(r_small, g_small, b_small)
+    c_small.setFill(color_small)
+    c_small.draw(win)
+    update()
+    c_small = Circle(Point((350 + shake), 250), 120)
+    r_small = 0#random.randrange(256)
+    b_small = 0#random.randrange(256)
+    g_small = 0#random.randrange(256)
+    color_small = color_rgb(r_small, g_small, b_small)
+    c_small.setFill(color_small)
+    c_small.draw(win)
+    update(5)
+    c_small = Circle(Point((350 - shake), 250), 120)
+    c_small = Circle(Point((350 + shake), 250), 120)
+    r_small = 255#random.randrange(256)
+    b_small = 255#random.randrange(256)
+    g_small = 255#random.randrange(256)
+    color_small = color_rgb(r_small, g_small, b_small)
+    c_small.setFill(color_small)
+    c_small.draw(win)
+    update()
+    c_small = Circle(Point((350 - shake), 250), 120)
+    c_small = Circle(Point((350 + shake), 250), 120)
+    r_small = 0#random.randrange(256)
+    b_small = 0#random.randrange(256)
+    g_small = 0#random.randrange(256)
+    color_small = color_rgb(r_small, g_small, b_small)
+    c_small.setFill(color_small)
+    c_small.draw(win)
+    update(5)
+    shake = shake - 5
+
+def update_eight_ball(response):
+  win = GraphWin('Eight Ball', 700, 500, autoflush=False)
+  c_large = Circle(Point(350, 250), 200)
+  r_large = 0#random.randrange(256)
+  b_large = 0#random.randrange(256)
+  g_large = 0#random.randrange(256)
+  color_large = color_rgb(r_large, g_large, b_large)
+  c_large.setFill(color_large)
+  c_large.draw(win)
+  update()
+  c_small = Circle(Point(350, 250), 120)
+  r_small = 255#random.randrange(256)
+  b_small = 255#random.randrange(256)
+  g_small = 255#random.randrange(256)
+  color_small = color_rgb(r_small, g_small, b_small)
+  c_small.setFill(color_small)
+  c_small.draw(win)
+  update()
+  for i in range(10):
+    c_small = Circle(Point(350, 250), 120)
+    r_small = 255#random.randrange(256)
+    b_small = 255#random.randrange(256)
+    g_small = 255#random.randrange(256)
+    color_small = color_rgb(r_small, g_small, b_small)
+    c_small.setFill(color_small)
+    c_small.draw(win)
+    update(5)
+  c_small = Circle(Point(350, 250), 120)
+  r_small = 255#random.randrange(256)
+  b_small = 255#random.randrange(256)
+  g_small = 255#random.randrange(256)
+  color_small = color_rgb(r_small, g_small, b_small)
+  c_small.setFill(color_small)
+  c_small.draw(win)
+  update()
+  graphic_response = Text(Point(350, 250), response)
+  r_text = 0#random.randrange(256)
+  b_text = 0#random.randrange(256)
+  g_text = 0#random.randrange(256)
+  color_text = color_rgb(r_text, g_text, b_text)
+  graphic_response.setFill(color_text)
+  graphic_response.draw(win)
+  update()
+
+def addResponse(response):
+  if response not in eightBallResponses:
+    eightBallResponses.append(response)
+
+def grabRandomResponse():
+  choice = random.randint(0, len(eightBallResponses)-1)
+  return eightBallResponses[choice]
+
+def askQuestion():
+  question = input('Ask a yes or no question: ')
+
+def noMoreQuestions():
+  return question != ""
